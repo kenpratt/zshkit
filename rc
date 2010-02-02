@@ -11,16 +11,6 @@ setopt NOHUP			    # Don't HUP running jobs on logout.
 setopt NOBGNICE             # Don't renice background jobs
 setopt EXTENDED_GLOB        # Enable extended globbing
 
-# TERM specific options
-
-case $TERM in
-screen)
-  setopt ignore_eof
-  ;;
-xterm*|rxvt|ansi)    
-  ;;
-esac
-
 zstyle ':completion:*' completer _expand _complete
 
 zstyle ':completion:*' use-cache on

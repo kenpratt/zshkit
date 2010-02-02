@@ -109,21 +109,38 @@ if [[ -x `which git` ]]; then
 	}
 
   alias g='git'
-  alias gb='git branch -a -v'
-  alias gs='git status'
-  alias gd='git diff'
+  alias br='git branch -a -v'
+  alias st='git status'
+  alias ci='git commit'
+  ciam() { git commit -a -m $@ }
+  alias pull='git pull --rebase'
+  alias push='git push'
+  alias pp='pull && push'
+  alias gl='git log'
+  alias add='git add'
+  alias stash='git stash'
+  alias unstash='git stash apply'
+  alias undo='git reset --soft HEAD~1'
   alias gf='git fetch'
   alias gr='git-rebase'
-  alias gsc='git-svn dcommit'
-  alias gsr='git-svn rebase'
-  alias gsf='git-svn fetch'
-  # gc      => git checkout master
-  # gc bugs => git checkout bugs
-  function gc {
-  if [ -z "$1" ]; then
-    git checkout master
+
+  # co      => git checkout master
+  # co bugs => git checkout bugs
+  co() {
+    if [ -z "$1" ]; then
+      git checkout master
     else
-    git checkout $1
-  fi
+      git checkout $1
+    fi
   }
+
+  if [[ "$DIFF_VIEWER" == "" ]]; then
+    alias di="git diff"
+    dih() { git diff HEAD~$1 HEAD }
+    di1() { git diff $1~1 $1 }
+  else
+    di() { git diff $@ | $DIFF_VIEWER }
+    dih() { git diff HEAD~$1 HEAD | $DIFF_VIEWER }
+    di1() { git diff $1~1 $1 | $DIFF_VIEWER }
+  fi
 fi

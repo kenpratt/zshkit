@@ -28,9 +28,9 @@ else
 fi
 
 # Set EDITOR as default for plaintext stuff
-for s in txt tex c cc cxx cpp gp m md markdown otl; do
-	alias -s $s=$EDITOR
-done
+#for s in txt tex c cc cxx cpp gp m md markdown otl; do
+#	alias -s $s=$EDITOR
+#done
 
 # Abuse the "open" command on OS X
 # if [[ $OSTYPE[1,6] == "darwin" ]]; then

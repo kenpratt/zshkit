@@ -1,0 +1,20 @@
+# Function to zip up a dir
+# http://textsnippets.com/posts/show/936
+zipdir() { zip "$@".zip -r "$@" -x "*/.DS_Store" "*/.svn/*" }
+
+# Copy my DSA key to a remote host
+copy-ssh-key() {
+  ssh ${1} "mkdir -p ~/.ssh && cat - >> ~/.ssh/authorized_keys2" < ~/.ssh/id_dsa.pub
+}
+
+install-ack() {
+  mkdir -p ~/bin
+  curl http://betterthangrep.com/ack-standalone > ~/bin/ack && chmod 0755 ~/bin/ack
+}
+
+set-wallpaper() {
+  ln -f -s ${1} ~/.current_wallpaper
+}
+
+sshtun() { ssh $1 -L $2:localhost:$3 -N -o ControlMaster=no -o ControlPath=none }
+pgtun() { ssh $1 -L 15432:localhost:5432 -N -o ControlMaster=no -o ControlPath=none }

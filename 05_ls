@@ -11,6 +11,6 @@ elif [[ -n `ls --color` && $? == 0 ]]; then
 fi
 
 alias l='ls'
-alias ll='ls -al'
-alias lh='ls -Alh'
-alias lt='ls -Alt'
+alias ll='ls -lh'
+alias la='ls -Alh'
+alias lt='ls -Alhtr'
